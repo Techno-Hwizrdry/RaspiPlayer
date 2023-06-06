@@ -297,7 +297,7 @@ def connected():
 def show_current():
  ##### display the station name and split it into 2 parts : 
     try:
-        tag = subprocess.check_output("mpc current", shell=True).split(" - ")
+        tag = subprocess.check_output("mpc current", shell=True).decode(sys.stdout.encoding).split(" - ")
     except subprocess.CalledProcessError:
       #  subprocess.call("mpc next", shell=True)
         return
@@ -331,7 +331,7 @@ def Rem_time():
 
      ## display remaining time in %
     try: 
-	    RemTime = subprocess.check_output("mpc -f  %time%", shell=True).split("\n")
+	    RemTime = subprocess.check_output("mpc -f  %time%", shell=True).decode(sys.stdout.encoding).split("\n")
     except subprocess.CalledProcessError:
         return
     if len(RemTime)==0: # percent time played
