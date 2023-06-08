@@ -283,12 +283,11 @@ def button(number):
 		pygame.display.flip()
 
 	if number == 11:
-		if mp3 == True:
+		if not mp3: return
+
 		# bargraph start point = 52, bargraph lenght = 407
-			atseek = (seek-52*q)*100 / (407*q) 
-			subprocess.call("mpc seek " + str(atseek) + "%", shell=True)
-		else:
-			return
+		atseek = (seek-52*q)*100 / (407*q) 
+		subprocess.call("mpc seek " + str(atseek) + "%", shell=True)
 
 def pause_play(toggle_pause: bool) -> tuple[int, str]:
 	'''
@@ -428,6 +427,7 @@ def refresh_screen():
 		pygame.draw.rect(screen, green, (int(300*q), int(280*q), int(70*q), int(20*q)),0)
 	else:
 		pygame.draw.rect(screen, white, (int(300*q), int(280*q), int(70*q), int(20*q)),0)
+		
 	if mp3 == True:
 		pygame.draw.rect(screen, green, (int(290*q), int(20*q), int(70*q), int(20*q)),0)
 		pygame.draw.rect(screen, white, (int(200*q), int(20*q), int(70*q), int(20*q)),0)
