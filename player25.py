@@ -199,12 +199,8 @@ def button(number):
 			subprocess.call("mpc load " + str(CurrPlaylist), shell = True)
 			subprocess.call("mpc add " + str(CurrPlaylist), shell = True)
 			x = x + 1
-			if CurrPlaylist == "Radio":
-				mp3 = False
-				play = False
-			else:
-				mp3 = True
-				play = False
+			play = False
+			mp3 = CurrPlaylist != "Radio"
 			#	refresh_screen()
 
 	if number == 3: # MP3 PLAY
@@ -278,8 +274,8 @@ def button(number):
 						subprocess.call("mpc clear", shell=True)
 						subprocess.call("mpc update", shell=True)
 						return
-				if event.type == KEYDOWN:
-					if event.key == K_ESCAPE: # ESC to exit
+				if event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_ESCAPE: # ESC to exit
 						return
 
 			pygame.display.flip()
