@@ -79,7 +79,7 @@ echo "Make backup of mpd.conf and create new:"
 echo "======================"
 echo ""
 sudo mv /etc/mpd.conf /etc/mpd.bak
-cat <<EOF > /etc/mpd.conf
+sudo cat <<EOF > /etc/mpd.conf
 # created by RaspiPlayer
 # An example configuration file for MPD.
 # Files and directories #######################################################
@@ -100,15 +100,9 @@ input {
 }
 # Audio Output ################################################################
 audio_output {
-	type		"alsa"
-	name		"My ALSA Device"
-}
-#
-# 
-audio_output {
-       type            "alsa"
-       name            "bluetooth-speaker "
-       device          "bluealsa:HCI=hci0,DEV=xx:xx:xx:xx:xx:xx,PROFILE=a2dp"
+       type            "pulse"
+       name            "BTS0011"
+       server          "127.0.0.1"
        mixer_type      "software"
 }
 #
@@ -116,3 +110,9 @@ filesystem_charset		"UTF-8"
 id3v1_encoding			"UTF-8"
 
 EOF
+
+sudo cp etc/pulse/default.pa /etc/pulse/
+pulseaudio --kill
+pulseaudio --start
+sudo systemctl restart mpd
+source install_touchscreen_right_click.sh
