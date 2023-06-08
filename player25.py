@@ -68,7 +68,6 @@ connection = None
 #set size of the screen
 size = width, height = 640, 430 #change as required
 ### remove FULLSCREEN mode for troubleshooting purposes
-#screen = pygame.display.set_mode(size)
 screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
 
 def get_args() -> Namespace:
