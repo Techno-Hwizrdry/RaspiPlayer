@@ -472,7 +472,5 @@ def main():
 	pygame.quit()
 
 connected()
-refresh_screen() 
-main() 
-
-
+refresh_screen()
+main()
