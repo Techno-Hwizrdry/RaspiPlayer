@@ -44,23 +44,20 @@ EOF
 echo "Creating Desktop shortcut:"
 echo "======================" 
 echo ""
- touch Piradio.desktop
- cat <<EOF > Piradio.desktop
-
+touch Piradio.desktop
+cat <<EOF > Piradio.desktop
 #!/usr/bin/bash
-
 [Desktop Entry]
 Name=Radio
 Type=Application
-Exec=lxterminal -t "Radio" --working-directory=/home/pi/RaspiPlayer/ -e ./radio.sh
-Icon=/home/pi/RaspiPlayer/icon.png
+Exec=lxterminal -t "Radio" --working-directory=$HOME/RaspiPlayer/ -e ./radio.sh $USER
+Icon=$HOME/RaspiPlayer/icon.png
 Comment=test
 Terminal=true
-
 EOF
 
 sudo chmod +x Piradio.desktop
-sudo mv Piradio.desktop /home/pi/Desktop
+sudo mv Piradio.desktop $HOME/Desktop
 
 echo "Make files executible:"
 echo "======================"
