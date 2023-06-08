@@ -1,12 +1,11 @@
-#!/usr/bin/bash
 
-RP_PATH=/home/$USER/RaspiPlayer
+#!/usr/bin/env bash
 
 [Desktop Entry]
 Name=Radio
 Type=Application
-Exec=lxterminal -t "Radio" --working-directory=$PR_PATH -e ./radio.sh
-Icon=$RP_PATH/icon.png
+Exec=lxterminal -t "Radio" --working-directory=/home/alexan/RaspiPlayer/ -e ./radio.sh alexan
+Icon=/home/alexan/RaspiPlayer/icon.png
 Comment=test
 Terminal=true
 
