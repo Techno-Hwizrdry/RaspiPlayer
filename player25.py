@@ -173,13 +173,8 @@ def button(number):
 		time.sleep(1)
 		pygame.display.flip()
 
-	if number == 1: # play / pause
-		if play == True:
-			subprocess.call("mpc pause ", shell=True)
-		else:
-			subprocess.call("mpc play ", shell=True)
-		play = (1,0)[play] # toggle play 
-		album_img = ("/tmp/kunst.png")
+	if number == 1:
+		play, album_img = pause_play(play)
 	#	refresh_screen()
 
 	music_path = opts.music_path
@@ -298,6 +293,16 @@ def button(number):
 			subprocess.call("mpc seek " + str(atseek) + "%", shell=True)
 		else:
 			return
+
+def pause_play(toggle_pause: bool) -> tuple[int, str]:
+	'''
+	Plays or pauses the current tack.
+	'''
+	cmd = "mpc pause" if toggle_pause else "mpc play"
+	subprocess.call([cmd], shell=True)
+	play = (1,0)[toggle_pause] # toggle play 
+	img = ("/tmp/kunst.png")
+	return (play, img)
 
 def connected():
 	#Detect an internet connection
