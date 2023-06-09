@@ -388,8 +388,6 @@ def refresh_screen() -> None:
 
 	if connection==True:
 		screen.blit(conn_image,(int(397*q), int(62*q)))
-	#else:
-	#	screen.blit(connect_label,(int(397*q), int(62*q))) # --------detection not reliable.
 
 	try:
 		album_art=pygame.image.load(album_img) # album art
@@ -400,8 +398,8 @@ def refresh_screen() -> None:
 
 	##### display the station name and split it into 2 parts : 
 	show_current()
-		#remaining time
-	Rem_time()
+	Rem_time()  #remaining time
+	
 	# add volume number
 #	volume = subprocess.check_output("mpc volume", shell=True )
 #	volume = volume[-4:-1] # remove unwanted characters.
