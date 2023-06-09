@@ -45,7 +45,8 @@ clock = pygame.time.Clock()
 # make sure to change the settings at /boot/config.txt for the
 # resolution required. Do this after installing the touch screen driver.
 # also change the background image with the correct size.
-q = 1.33 # screen size ratio. Use 1 for 480x320, or 1.33 for 640x430.
+#q = 1.33 # screen size ratio. Use 1 for 480x320, or 1.33 for 640x430.
+q = 1.55  # came from 800 / 480  or 480 / 320
 
 mp3 = False
 shuffle = False
@@ -60,13 +61,13 @@ _image = ('/tmp/kunst.png')
 album_img = ('150x112.png')
 conn_image=pygame.image.load("internet.png")
 genlist_img=pygame.image.load("genlist2.png")
-skin1=pygame.image.load("640x430.png") #change as required
-skin2=pygame.image.load("buttons.png") #change as required
+skin1=pygame.image.load("ezgif-2.jpg")
+skin2=pygame.image.load("buttons800x480.png") #change as required
 
 connection = None
 
 #set size of the screen
-size = width, height = 640, 430 #change as required
+size = width, height = 800, 480 #change as required
 ### remove FULLSCREEN mode for troubleshooting purposes
 screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
 
@@ -421,23 +422,20 @@ def refresh_screen():
 #	volume = volume[-4:-1] # remove unwanted characters.
 	volume_lbl=mfont.render(volume, 1, (white))
 	screen.blit(volume_lbl,(int(190*q),int(90*q)))
-	# change color of buttons.
-	if shuffle == True:
-		pygame.draw.rect(screen, green, (int(300*q), int(280*q), int(70*q), int(20*q)),0)
-	else:
-		pygame.draw.rect(screen, white, (int(300*q), int(280*q), int(70*q), int(20*q)),0)
-		
-	if mp3 == True:
-		pygame.draw.rect(screen, green, (int(290*q), int(20*q), int(70*q), int(20*q)),0)
-		pygame.draw.rect(screen, white, (int(200*q), int(20*q), int(70*q), int(20*q)),0)
-	else:
-		pygame.draw.rect(screen, white, (int(290*q), int(20*q), int(70*q), int(20*q)),0)
-		pygame.draw.rect(screen, green, (int(200*q), int(20*q), int(70*q), int(20*q)),0)
 
-	if play == True:
-		pygame.draw.rect(screen, green, (int(110*q), int(280*q), int(70*q), int(20*q)),0)
+	# change color of buttons.
+	color = green if shuffle else white
+	pygame.draw.rect(screen, color, (int(300*q)+12, int(280*q)-20, int(70*q)+40, int(20*q)+15),0)
+		
+	if mp3:
+		pygame.draw.rect(screen, green, (int(290*q), int(20*q)-10, int(70*q)+50, int(20*q)),0)
+		pygame.draw.rect(screen, white, (int(200*q), int(20*q)-10, int(70*q)+50, int(20*q)),0)
 	else:
-		pygame.draw.rect(screen, white, (int(110*q), int(280*q), int(70*q), int(20*q)),0)
+		pygame.draw.rect(screen, white, (int(290*q), int(20*q)-10, int(70*q)+50, int(20*q)),0)
+		pygame.draw.rect(screen, green, (int(200*q), int(20*q)-10, int(70*q)+50, int(20*q)),0)
+
+	color_play = green if play else white
+	pygame.draw.rect(screen, color_play, (int(110*q)+5, int(280*q)-20, int(70*q)+40, int(20*q)+15),0)
 
 	screen.blit(skin2,(0,0))
 	pygame.display.flip()
