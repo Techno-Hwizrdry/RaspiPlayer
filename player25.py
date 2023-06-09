@@ -88,7 +88,7 @@ def get_args() -> Namespace:
 	return parser.parse_args()
 
 #define function that checks for mouse location
-def on_click():
+def on_click() -> None:
 	# exit has been pressed
 	if int(396*q) < click_pos[0] < round(458*q, 0) and round(10*q, 0) < click_pos[1] < round(56*q, 0):
 		button(0)
@@ -136,7 +136,7 @@ def on_click():
 		button(11)
 
 #define action on pressing buttons
-def button(number):
+def button(number: int) -> None:
 	global album_img
 	global play
 	global x
@@ -299,7 +299,7 @@ def pause_play(toggle_pause: bool) -> tuple[int, str]:
 	img = ("/tmp/kunst.png")
 	return (play, img)
 
-def connected():
+def connected() -> None:
 	#Detect an internet connection
 	return # this is not reliable
 	global connection
@@ -314,7 +314,7 @@ def connected():
 	finally:
 		return connection
 
-def show_current():
+def show_current() -> None:
  ##### display the station name and split it into 2 parts : 
 	try:
 		tag = subprocess.check_output("mpc current", shell=True).decode(sys.stdout.encoding).split(" - ")
@@ -346,7 +346,7 @@ def show_current():
 	screen.blit(artist_name,(int(66*q),int(225*q)))
 	screen.blit(title_lbl,(int(66*q),int(195*q)))
 
-def Rem_time():
+def Rem_time() -> None:
 	pygame.draw.line(screen, black, (52*q, 260*q), (459*q, 260*q), 10)
 
 	 ## display remaining time in %
@@ -377,7 +377,7 @@ def Rem_time():
 	rem_time=sfont.render(remT2, 1, (cyan))
 	screen.blit(rem_time,(int(190*q),int(153*q)))
 
-def refresh_screen():
+def refresh_screen() -> None:
 	global connect_img
 	global CurrPlaylist
 	global play
@@ -425,22 +425,22 @@ def refresh_screen():
 
 	# change color of buttons.
 	color = green if shuffle else white
-	pygame.draw.rect(screen, color, (int(300*q)+12, int(280*q)-20, int(70*q)+40, int(20*q)+15),0)
+	pygame.draw.rect(screen, color, (int(300*q)+12, int(280*q)-20, int(70*q)+40, int(20*q)+15), 0)
 		
 	if mp3:
-		pygame.draw.rect(screen, green, (int(290*q), int(20*q)-10, int(70*q)+50, int(20*q)),0)
-		pygame.draw.rect(screen, white, (int(200*q), int(20*q)-10, int(70*q)+50, int(20*q)),0)
+		pygame.draw.rect(screen, green, (int(290*q)+10, int(20*q)-10, int(70*q)+50, int(20*q)+15), 0)
+		pygame.draw.rect(screen, white, (int(200*q)+10, int(20*q)-10, int(70*q)+50, int(20*q)+15), 0)
 	else:
-		pygame.draw.rect(screen, white, (int(290*q), int(20*q)-10, int(70*q)+50, int(20*q)),0)
-		pygame.draw.rect(screen, green, (int(200*q), int(20*q)-10, int(70*q)+50, int(20*q)),0)
+		pygame.draw.rect(screen, white, (int(290*q)+10, int(20*q)-10, int(70*q)+50, int(20*q)+15), 0)
+		pygame.draw.rect(screen, green, (int(200*q)+10, int(20*q)-10, int(70*q)+50, int(20*q)+15), 0)
 
 	color_play = green if play else white
-	pygame.draw.rect(screen, color_play, (int(110*q)+5, int(280*q)-20, int(70*q)+40, int(20*q)+15),0)
+	pygame.draw.rect(screen, color_play, (int(110*q)+5, int(280*q)-20, int(70*q)+40, int(20*q)+15), 0)
 
 	screen.blit(skin2,(0,0))
 	pygame.display.flip()
 
-def main():
+def main() -> None:
 	global click_pos
 	global seek
 	global opts
