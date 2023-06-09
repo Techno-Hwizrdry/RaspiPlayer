@@ -2,23 +2,23 @@
 
 #pi-radio installation
 clear
+# Install dependencies
+echo "Installing ffmpeg, imagemagick,"
+echo "jq, mpc, mpd, and sxiv..."
+echo "==============================="
+sudo apt install mpd mpc ffmpeg sxiv imagemagick jp -y
+
+echo "Installing Kunst..."
+echo "==================="
+sudo git clone https://github.com/sdushantha/kunst
+cd kunst
+sudo make install
+cd ..
+sudo rm -fr kunst
+
 #create playlists
-echo "Before running this file, make sure mpd, mpc, Kunst"
-echo "and ffmpeg are installed"
-echo "====================="
-
-echo ""
-echo "Press Ctrl-C to exit"
-read -p "Press [Enter] key to continue..."
-
-echo "Adding USB drive:"
-echo "======================"
-echo ""
-#add virtual USB drive if used
-sudo mkdir /mnt/usbdrive
-
 echo "Generating Playlists:"
-echo "======================"
+echo "====================="
 echo ""
 sudo touch /var/lib/mpd/playlists/Radio.m3u
 
@@ -42,7 +42,7 @@ EOF
 # create shortcut on desktop
 
 echo "Creating Desktop shortcut:"
-echo "======================" 
+echo "==========================" 
 echo ""
 touch Piradio.desktop
 cat <<EOF > Piradio.desktop
@@ -66,14 +66,14 @@ sudo chmod +x *.sh
 
 echo "Move kunst-run.sh to init.d:"
 echo "and run at boot"
-echo "======================"
+echo "============================"
 echo ""
 sudo cp kunst-run.sh /etc/init.d/
 sudo chmod +x /etc/init.d/kunst-run.sh
 sudo update-rc.d kunst-run.sh defaults
 
 echo "Make backup of mpd.conf and create new:"
-echo "======================"
+echo "======================================="
 echo ""
 sudo mv /etc/mpd.conf /etc/mpd.bak
 sudo cat <<EOF > /etc/mpd.conf
