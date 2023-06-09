@@ -299,21 +299,6 @@ def pause_play(toggle_pause: bool) -> tuple[int, str]:
 	img = ("/tmp/kunst.png")
 	return (play, img)
 
-def connected() -> None:
-	#Detect an internet connection
-	return # this is not reliable
-	global connection
-	connection = None
-	try:
-		socket.create_connection(("1.1.1.1", 53)) # check every 180 seconds
-#        print("Internet connection detected.")
-		connection = True
-	except OSError:
-#        print("Internet connection not detected.")
-		connection = False
-	finally:
-		return connection
-
 def show_current() -> None:
  ##### display the station name and split it into 2 parts : 
 	try:
@@ -451,7 +436,6 @@ def main() -> None:
 		seconds=(pygame.time.get_ticks() - timer)/1000
 		if seconds > 180: # check every 3 min 
 			timer = pygame.time.get_ticks()
-			connected() # check for internet connection
 
 		for event in pygame.event.get():
 			if event.type == pygame.MOUSEBUTTONDOWN:
@@ -468,6 +452,5 @@ def main() -> None:
 		refresh_screen()
 	pygame.quit()
 
-connected()
 refresh_screen()
 main()
