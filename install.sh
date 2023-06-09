@@ -112,4 +112,4 @@ sudo cp etc/pulse/default.pa /etc/pulse/
 pulseaudio --kill
 pulseaudio --start
 sudo systemctl restart mpd
-source install_touchscreen_right_click.sh
+source install_touchscreen_right_click.sh $USER
